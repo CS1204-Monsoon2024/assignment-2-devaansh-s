@@ -50,7 +50,7 @@ private:
 
 public:
     HashTable(int init_size) {
-        max_load_factor = 0.8;
+        max_load_factor = 0.75;
         capacity = findNextPrime(init_size);
         slots = new string[capacity];
         current_entries = 0;
@@ -81,13 +81,6 @@ public:
                 return;
             }
         }
-
-    slots[(index + probe_count * probe_count) % capacity] = to_string(key);
-    current_entries++;
-
-    cout << "Inserted " << key << " at index " << (index + probe_count * probe_count) % capacity << endl;
-}
-
 
         slots[(index + probe_count * probe_count) % capacity] = to_string(key);
         current_entries++;
@@ -155,6 +148,7 @@ public:
         cout << endl; 
     }
 
+    
 };
 
 //int main() {
@@ -162,22 +156,21 @@ public:
     //HashTable ht(initialSize);
 
     // Example test case
-   // ht.insert(1);
-   // ht.printTable();
-   // ht.insert(6);
-   // ht.printTable();
-    // ht.insert(15);
-    // ht.printTable(); 
-   // ht.insert(25);
-   // ht.printTable();
-   // ht.remove(15);
-   // ht.printTable();
-   // ht.insert(29);  
-   // ht.printTable(); 
+    //ht.insert(1);
+    //ht.printTable();
+    //ht.insert(6);
+    //ht.printTable();
+    //ht.insert(15);
+    //ht.printTable(); 
+    //ht.insert(25);
+    //ht.printTable();
+    //ht.remove(15);
+    //ht.printTable();
+    //ht.insert(29);  
+    //ht.printTable(); 
 
-   // int find = ht.search(22);
-   // std::cout << "Found at: " << find << std::endl;
+    //int find = ht.search(22);
+    //std::cout << "Found at: " << find << std::endl;
 
     //return 0;
 //}
-
