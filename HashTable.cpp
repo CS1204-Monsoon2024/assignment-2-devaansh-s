@@ -50,7 +50,7 @@ private:
 
 public:
     HashTable(int init_size) {
-        max_load_factor = 0.75;
+        max_load_factor = 0.8;
         capacity = findNextPrime(init_size);
         slots = new string[capacity];
         current_entries = 0;
@@ -148,9 +148,6 @@ public:
         cout << endl; 
     }
 
-    ~HashTable() {
-        delete[] slots;
-    }
 };
 
 //int main() {
