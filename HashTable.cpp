@@ -61,31 +61,26 @@ public:
     }
 
     void insert(int key) {
-    cout << "Inserting: " << key << endl;
-
-    if (contains(key)) {
-        cout << "Duplicate key insertion is not allowed" << endl;
-        return;
-    }
-
-    if ((double)current_entries / capacity > max_load_factor) {
-        cout << "Resizing table..." << endl;
-        rehash();
-    }
-
-    int index = hashFunction(key);
-    int probe_count = 0;
-
-    while (slots[(index + probe_count * probe_count) % capacity] != "Free" &&
-           slots[(index + probe_count * probe_count) % capacity] != "Removed") {
-        cout << "Collision at index " << (index + probe_count * probe_count) % capacity << endl;
-        probe_count++;
-
-        if (probe_count == capacity) {
-            cout << "Max probing limit reached!" << endl;
+        if (contains(key)) {
+            cout << "Duplicate key insertion is not allowed" << endl;
             return;
         }
-    }
+
+        if ((double)current_entries / capacity > max_load_factor) {
+            rehash();
+        }
+
+        int index = hashFunction(key);
+        int probe_count = 0;
+
+        while (slots[(index + probe_count * probe_count) % capacity] != "Free" &&
+               slots[(index + probe_count * probe_count) % capacity] != "Removed") {
+            probe_count++;
+            if (probe_count == capacity) {
+                cout << "Max probing limit reached!" << endl;
+                return;
+            }
+        }
 
     slots[(index + probe_count * probe_count) % capacity] = to_string(key);
     current_entries++;
